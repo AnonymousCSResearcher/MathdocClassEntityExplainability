@@ -2,6 +2,10 @@
 
 This manual provides descriptions to reproduce the results for each subsection of the evaluation section of the associated paper.
 
+## Evaluation Workflow
+
+![EvaluationWorkflow](https://github.com/AnonymousCSResearcher/STEMdocClassExplainability/blob/main/Workflow_EL-ClassExplainability.png)
+
 ## MSC-arXiv Category Correspondence
 
 Data and algorithms can be found in the folder 'Classification'.
