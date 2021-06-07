@@ -1,0 +1,28 @@
+line no.,arxiv_id,de number,msc,categories,corpus path,note
+,,,,,,
+10,704.0041,5996402,81R50 17B37 81R60 53C21,math.QA math-ph math.MP,0704.0041.html,math.MP has not mention
+191,704.1034,5083228,53D05 52A20 53D20 51M20 52C17,math.SG math.CO,missing,corpus path missing
+1028,705.1079,5644700,35J10 82B44 35R60 47B80 35B60 58J05,math.SP math-ph math.DG math.MP,0705.1079.html,math.MP has not mention
+1413,705.3017,5839621,83F05 85A15 81T20,astro-ph hep-th,0705.3017.html,
+1725,705.4506,5382626,58J28 58J50 11F72 22E46,math.SP math.DG,0705.4506.html,
+1879,706.0541,5813054,11G10 11G35 14K15 14G25 14H40 14J27 14J28 14J20,math.AG math.NT,missing,corpus path missing
+2492,706.3367,5202209,34M35 81Q05 32G34 14H52 82B20,math-ph cond-mat.stat-mech hep-th math.MP physics.comp-ph,0706.3367.html,math.MP has not mention
+3189,707.2165,6640076,55S20 55S30 55P35 16E40 16E45,math.AT,0707.2165.html,
+4230,708.2478,5662778,05A15 05B45 52C45,math.CO math.AG,missing,corpus path missing
+4607,708.4284,5686440,05C85 68R10,cs.DM cs.DS,0708.4284.html,
+5081,709.2224,5781389,22A30 05C12 68Q45,math.MG cs.DM,0709.2224.html,
+5209,709.2801,5382001,37C30 37C85 58J52 11G25 11M41,math.NT math.DS,0709.2801.html,
+9391,801.2505,6300781,28A12 30D20 60A10,math.CA math.PR,0801.2505.html,
+10428,802.2076,5665429,37A30 46L55 20E06 37L55,math.DS math.OA,0802.2076.html,
+11463,803.2355,5376833,11J83 11J13 11K60,math.NT,0803.2355.html,
+12486,804.2208,5575960,82B20 82B24 60F10,math.PR cond-mat.stat-mech math-ph math.MP,0804.2208.html,math.MP has not mentioned
+14485,806.2168,5607350,60F05 60C05 22E30,math.PR math-ph math.MP,0806.2168.html,math.MP has not mentioned
+16459,808.1787,6146310,68R10 05C85 68W25,cs.DS cs.CC,0808.1787.html,
+19360,811.0220,5973331,20E08 20E07 20E15 20F05 20F65 20F67,math.GR math.DS math.PR,0811.0220.html,
+22347,901.4685,5589833,82B20 82B26 82B23 82B27,cond-mat.stat-mech math-ph math.MP,0901.4685.html,math.MP has not mentioned
+23515,902.4825,6296983,81T40 81R12,hep-th math-ph math.MP math.QA,0902.4825.html,math.MP has not mentioned
+24190,903.2835,6299707,81Q60,math-ph hep-th math.MP quant-ph,0903.2835.html,math.MP has not mentioned
+25568,904.3079,5596939,83C65 83D05,hep-th gr-qc math-ph math.MP,0904.3079.html,math.MP has not mentioned
+25756,904.3947,5641294,82B20 82D20 82B27 82C22,cond-mat.stat-mech math-ph math.CO math.MP,0904.3947.html,math.MP has not mentioned
+25984,905.0093,5598699,70S05 78A60 81Q20,physics.optics hep-th nlin.PS,0905.0093.html,
+121668,1404.5854,6289343,00B25 83-06 83F05 00A79,physics.hist-ph astro-ph.CO gr-qc hep-th,missing,corpus path missing
