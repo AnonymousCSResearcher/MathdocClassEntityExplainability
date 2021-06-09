@@ -9,6 +9,7 @@ The figure below illstrates the workflow of our experiements.
 ![EvaluationWorkflow](https://github.com/AnonymousCSResearcher/STEMdocClassExplainability/blob/main/Workflow_EL-ClassExplainability.png)
 
 Entity Linking for both textual and mathematical entities and entity-category correspondence is examined as a prerequisite for classification entity explainability.
+The python module dependencies (scikit-learn, LIME, SHAP, etc.) are specified in the header of the respective scripts.
 
 ## MSC-arXiv Category Correspondence
 
