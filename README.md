@@ -24,7 +24,7 @@ msc_categories.csv
 ```
 get_cooccurrence_matrix.py
 ```
-yielding 'coocurrence_matrix.csc'.
+yielding 'coocurrence_matrix.csv'.
 
 3) To get the uncertainty/entropy analysis results run
 ```
