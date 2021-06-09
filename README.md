@@ -1,10 +1,14 @@
 # Mathematical Entity Linking for STEM Document Classification Explainability
 
-This manual provides descriptions to reproduce the results for each subsection of the evaluation section of the associated paper.
+This manual provides descriptions to reproduce the results for each subsection of the evaluation section of the associated paper. In this project, we address the information need of document subject category classification interpretability and explainability. Therefore, we analyze the relationships between categories (labels) and entities (features) of a document. We examine relationships between textual and mathematical subject classes and entities, mining a collection of documents from the arXiv preprint repository (NTCIR and zbMATH dataset). The results indicate that mathematical entities have the potential to provide high explainability as they are a crucial part of a STEM (Science, Technology, Engineering, and Mathematics) document.
 
 ## Evaluation Workflow
 
+The figure below illstrates the workflow of our experiements.
+
 ![EvaluationWorkflow](https://github.com/AnonymousCSResearcher/STEMdocClassExplainability/blob/main/Workflow_EL-ClassExplainability.png)
+
+Entity Linking for both textual and mathematical entities and entity-category correspondence is examined as a prerequisite for classification entity explainability.
 
 ## MSC-arXiv Category Correspondence
 
