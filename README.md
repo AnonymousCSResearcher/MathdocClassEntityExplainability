@@ -4,7 +4,7 @@ This manual provides descriptions to reproduce the results for each subsection o
 
 ## Evaluation Workflow
 
-The figure below (Figure 1) illustrates the workflow of our experiments.
+The figure below (paper Figure 1) illustrates the workflow of our experiments.
 
 ![EvaluationWorkflow](https://github.com/AnonymousCSResearcher/STEMdocClassExplainability/blob/main/Workflow_EL-ClassExplainability.png)
 
@@ -41,7 +41,7 @@ yielding 'uncertainties_arXiv.json' and 'uncertainties_MSCs.json'.
 get_multilabel_classification.py
 ```
 
-5) The prediction of the categories using a LogReg classifier on TFIDF encodings (Table I) or the co-occurrence matrix can be made with
+5) The prediction of the categories using a LogReg classifier on TFIDF encodings (paper Table I) or the co-occurrence matrix can be made with
 ```
 predict_categories_classifier.py
 ```
@@ -70,7 +70,7 @@ http://ntcir-math.nii.ac.jp/data
 extract_surroundingtext_multiprocess.py
 ```
 
-2) The identifier statistics (Figure 2 and Table II) are extracted from the 'annotation_catalog_all.pkl' using
+2) The identifier statistics (paper Figure 2 and Table II) are extracted from the 'annotation_catalog_all.pkl' using
 ```
 compare_predictions_classifier_to_cooccurrence.py
 ```
@@ -84,7 +84,7 @@ visualize_identifier_statistics.py
 
 Data and algorithms can be found in the folder 'Augmentations/IdentifierSemantification'.
 
-0) For the creation of the formula identifier semantification catalog (Table III) see the 'Identifier Class Semantics Distributions' section with the script
+0) For the creation of the formula identifier semantification catalog (paper Table III) see the 'Identifier Class Semantics Distributions' section with the script
 ```
 extract_surroundingtext_multiprocess.py
 ```
@@ -104,7 +104,7 @@ arXiv12DocsMath2Vec_augmented.py
 ```
 for mathematical elements (surrounding text of formulae).
 
-3) The document classification is made and evaluated (Table IV) running
+3) The document classification is made and evaluated (paper Table IV) running
 ```
 arXivClassification_semantified.py
 ```
@@ -118,7 +118,7 @@ Data and algorithms can be found in the folder 'Augmentations'.
 Wikipedia_Categories_Concepts_Data.py
 ```
 
-2) The category concept augmentations (Table V) for the text classification is carried out using
+2) The category concept augmentations (paper Table V) for the text classification is carried out using
 ```
 Wikipedia_Categories_Concepts.py
 ```
@@ -142,7 +142,7 @@ get_class_entity_index(_Wikipedia).py
 WikiDump.py
 ```
 
-3) The evaluation of the entity linking (Table VI for text comparing eval modes 1-6, and Table VII for math ranking formula concept n-grams) can be reproduced via
+3) The evaluation of the entity linking (paper Table VI for text comparing eval modes 1-6, and Table VII for math ranking formula concept n-grams) can be reproduced via
 ```
 get_evaluation_entity_linking.py
 ```
@@ -175,7 +175,7 @@ respectively
 get_most_frequent.py
 ```
 
-3) Finally, both distributions (most discriminative, most frequent) are compared calculating distribution entropies (Table VIII) in
+3) Finally, both distributions (most discriminative, most frequent) are compared calculating distribution entropies (paper Table VIII) in
 ```
 compare_most_frequent_vs_discriminative.py
 ```
