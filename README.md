@@ -156,6 +156,23 @@ get_scoring_evaluation_entity_linking.py
 get_index_entropies.py
 ```
 
+## QID and MSC Prediction
+
+Data and algorithms can be found in the folder 'ConceptClassSpaces'.
+
+1) QID and MSC predictions can be made using
+```
+get_ConceptClassSpaces.py
+```
+2) The manual QID benchmark dataset (500 manually linked entities) is available in
+```
+evaluation/100docs/assessed/Math Entity Linking zbmath keywords evaluation_all.csv
+```
+3) The pywikibot/SPARQL predictions are evaluated agains the benchmark using
+```
+evaluate_MathEL_zbmath_keywords.py
+```
+
 ## Class-Entity Explainability
 
 Data and algorithms can be found in the folder 'Explainability'.
