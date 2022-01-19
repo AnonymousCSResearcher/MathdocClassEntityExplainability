@@ -328,6 +328,12 @@ def get_keywords(table,idx):
         keywords.append(keyword)
     return keywords
 
+def get_refs(table,idx):
+    return clean(table['refs'][idx]).replace(',','').split()
+
+def get_de(table,idx):
+    return table['de'][idx]
+
 def generate_msc_keyword_mapping(table,nr_docs):
     # Iterate documents to get class-entity linking index
     max_rows = nr_docs
@@ -347,7 +353,7 @@ def generate_msc_keyword_mapping(table,nr_docs):
 
         #title = table['title'][idx]
         #abstract = table['text'][idx]
-        #refs = clean(table['refs'][idx]).split())
+        #refs = get_refs(table,idx)
 
         # Set entity source
         #text = title + abstract
@@ -470,23 +476,26 @@ def predict_text_mscs(table,n_gram_lengths):
         mscs_predicted_stat = {}
         for n in n_gram_lengths:
             nngrams = ngrams(text.split(), n)
-            for nngram in nngrams:
-                entity = ''
-                for word in nngram:
-                    entity += word + ' '
-                entity = entity[:-1]
-                try:
-                    if sorted_ent_cls_idx[entity] is not None and entity not in sstopwords:
-                        #print(entity)
-                        #mscs_predicted[idx].extend(list(sorted_ent_cls_idx[entity])[0:1])
-                        for cls in sorted_ent_cls_idx[entity].items():
-                            try:
-                                # SELECTION HERE
-                                mscs_predicted_stat[cls[0]] += 1#cls[1]#1 # weightedcontribution or binarycontribution
-                            except:
-                                mscs_predicted_stat[cls[0]] = 1
-                except:
-                    pass
+            try:
+                for nngram in nngrams:
+                    entity = ''
+                    for word in nngram:
+                        entity += word + ' '
+                    entity = entity[:-1]
+                    try:
+                        if sorted_ent_cls_idx[entity] is not None and entity not in sstopwords:
+                            #print(entity)
+                            #mscs_predicted[idx].extend(list(sorted_ent_cls_idx[entity])[0:1])
+                            for cls in sorted_ent_cls_idx[entity].items():
+                                try:
+                                    # SELECTION HERE
+                                    mscs_predicted_stat[cls[0]] += 1#cls[1]#1 # weightedcontribution or binarycontribution
+                                except:
+                                    mscs_predicted_stat[cls[0]] = 1
+                    except:
+                        pass
+            except:
+                pass
 
         if len(mscs_predicted_stat) != 0:
             # sort
@@ -494,7 +503,7 @@ def predict_text_mscs(table,n_gram_lengths):
                     sorted(mscs_predicted_stat.items(), key=lambda item: item[1], reverse=True))
 
             # get (normalized) prediction (confidence)
-            nr_mscs_cut_off = 5
+            nr_mscs_cut_off = 1
             mscs_predicted[idx] = list(sorted_mscs_predicted_stat)[:nr_mscs_cut_off]#cut off at fixed nr_mscs_cut_off or dynamic number #len(mscs_actual[idx])
             mscs_cut_off = list(sorted_mscs_predicted_stat.items())[:nr_mscs_cut_off]
             # norm
@@ -521,6 +530,8 @@ def predict_text_mscs(table,n_gram_lengths):
 
     return None
 
+
+
 ###########
 # EXECUTE #
 ###########
@@ -533,11 +544,12 @@ fullpath = os.path.join(inpath,filename_input)
 outpath = 'evaluation/alldocs/ngrams_2-3/'
 
 # Load table
-table = pd.read_csv(fullpath,delimiter=',')
+#table = pd.read_csv(fullpath,delimiter=',')
 
 # Set parameter
 #tot_rows = len(table)
-#nr_docs = tot_rows
+test_split = 0.5
+#nr_docs = int(tot_rows*test_split)
 #nr_docs = 100
 
 #1) Generate MSC-keyword mapping
@@ -550,7 +562,7 @@ table = pd.read_csv(fullpath,delimiter=',')
 #3) Generate MSC-QID mapping
 
 #4) Predict text MSCs
-predict_text_mscs(table,n_gram_lengths=[2,3])
+#predict_text_mscs(table,n_gram_lengths=[2,3])
 #5) Predict text QIDs
 
 #6) Generate and evaluate MSC/QID predictions
