@@ -11,6 +11,44 @@ The figure below (paper Figure 1) illustrates the workflow of our experiments.
 Entity Linking for both textual and mathematical entities and entity-category correspondence is examined as a prerequisite for classification entity explainability.
 The python module dependencies (scikit-learn, LIME, SHAP, etc.) are specified in the header of the respective scripts. The numbering of the result figures and tables in the paper are referenced where they are relevant.
 
+## Fine-Grained QID and MSC Prediction
+
+Data and algorithms can be found in the folder 'ConceptClassSpaces'.
+
+1) QID and MSC predictions can be made using
+```
+get_ConceptClassSpaces.py
+```
+2) The manual QID benchmark dataset (500 manually linked entities) is available in
+```
+evaluation/100docs/assessed/Math Entity Linking zbmath keywords evaluation_all.csv
+```
+3) The pywikibot/SPARQL predictions are evaluated agains the benchmark using
+```
+evaluate_MathEL_zbmath_keywords.py
+```
+4) MSC prediction is done by
+```
+predict_mscs.py
+```
+generating
+```
+mrmscs_dict.json
+```
+5)
+After making a
+```
+train-test_split.py
+```
+the evaluation can be carried out using
+```
+keywords_vs_refs.py
+```
+outputting
+```
+keywords_vs_refs_mrmscs.csv
+```
+
 ## MSC-arXiv Category Correspondence
 
 Data and algorithms can be found in the folder 'Classification'.
@@ -154,23 +192,6 @@ get_scoring_evaluation_entity_linking.py
 4) An entropy index for 'text' or 'math' mode can be obtained via
 ```
 get_index_entropies.py
-```
-
-## QID and MSC Prediction
-
-Data and algorithms can be found in the folder 'ConceptClassSpaces'.
-
-1) QID and MSC predictions can be made using
-```
-get_ConceptClassSpaces.py
-```
-2) The manual QID benchmark dataset (500 manually linked entities) is available in
-```
-evaluation/100docs/assessed/Math Entity Linking zbmath keywords evaluation_all.csv
-```
-3) The pywikibot/SPARQL predictions are evaluated agains the benchmark using
-```
-evaluate_MathEL_zbmath_keywords.py
 ```
 
 ## Class-Entity Explainability
