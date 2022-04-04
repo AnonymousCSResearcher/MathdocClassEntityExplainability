@@ -1,4 +1,4 @@
-# Mathematical Entity Linking for STEM Document Classification Explainability
+# Explainable Fine-Grained Document Classification of Mathematical Documents
 
 This manual provides descriptions to reproduce the results for each subsection of the evaluation section of the associated paper. In this project, we address the information need of document subject category classification interpretability and explainability. Therefore, we analyze the relationships between categories (labels) and entities (features) of a document. We examine relationships between textual and mathematical subject classes and entities, mining a collection of documents from the arXiv preprint repository (NTCIR and zbMATH dataset). The results indicate that mathematical entities have the potential to provide high explainability as they are a crucial part of a STEM (Science, Technology, Engineering, and Mathematics) document.
 
