@@ -1,5 +1,16 @@
 # Explainable Fine-Grained Document Classification of Mathematical Documents
 
+This manual provides descriptions to reproduce the results of the associated paper.
+
+Document subject classification enables structuring (digital) libraries and allows readers to search for articles within a specific field.
+Currently, the classification is typically provided by human domain experts.
+Semi-supervised Machine or Deep Learning algorithms can support them by exploiting labeled data to predict subject classes of unclassified new documents.
+However, these algorithms only work or yield useful results if the ratio of training examples per class is high.
+In the case of mathematical documents, the commonly used Mathematical Subject Classification (MSC) leads to multiple challenges: The classification is 1) multi-label, 2) hierarchical, 3) fine-grained, and 4) sparsely populated with examples for the more than 5,000 classes.
+In this paper, we address these challenges by using class-entity relations to enable multi-label hierarchical fine-grained category predictions for the first time while providing high explainability.
+We examine relationships between fine-grained subject classes and keyword entities, mining a dataset from the zbMATH library https://zbmath.org.
+
+<!--
 This manual provides descriptions to reproduce the results for each subsection of the evaluation section of the associated paper. In this project, we address the information need of document subject category classification interpretability and explainability. Therefore, we analyze the relationships between categories (labels) and entities (features) of a document. We examine relationships between textual and mathematical subject classes and entities, mining a collection of documents from the arXiv preprint repository (NTCIR and zbMATH dataset). The results indicate that mathematical entities have the potential to provide high explainability as they are a crucial part of a STEM (Science, Technology, Engineering, and Mathematics) document.
 
 ## Evaluation Workflow
@@ -10,6 +21,7 @@ The figure below (paper Figure 1) illustrates the workflow of our experiments.
 
 Entity Linking for both textual and mathematical entities and entity-category correspondence is examined as a prerequisite for classification entity explainability.
 The python module dependencies (scikit-learn, LIME, SHAP, etc.) are specified in the header of the respective scripts. The numbering of the result figures and tables in the paper are referenced where they are relevant.
+-->
 
 ## Fine-Grained QID and MSC Prediction
 
