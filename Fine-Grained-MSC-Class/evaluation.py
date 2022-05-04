@@ -579,6 +579,7 @@ def predict_mscs(ent_cls_dict):
 ###########
 
 # Set paths
+# ADAPT INPUT PATH HERE
 inpath = r'C:\Users\phili\Downloads'
 filename_input = 'out.csv'#full.csv
 fullpath = os.path.join(inpath,filename_input)
