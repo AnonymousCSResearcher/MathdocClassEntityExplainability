@@ -4,15 +4,17 @@ import json
 #import pywikibot
 #import SPARQLWrapper
 import time
-from EntityLinking.WikiDump import get_Wikipedia_article_names
+
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-#import nltk
+import nltk
 #nltk.download('punkt')
 #nltk.download('stopwords')
 from nltk import WordNetLemmatizer
 from nltk import ngrams
+
 import numpy as np
+import scipy
 
 ##########
 # DEFINE #
@@ -169,6 +171,27 @@ def get_entity_linking_wikidata_ngram(text,n_gram_length):
                 link_text += word + " "
 
     return entities,qids,link_text
+
+file = "enwiki-latest-all-titles-in-ns0"
+
+def get_Wikipedia_article_names(n_gram_length):
+
+    file = "enwiki-latest-all-titles-in-ns0"
+
+    with open(file,"r",encoding="utf-8") as f:
+        lines = f.readlines()
+
+    #names = []
+    names = {}
+    for line in lines:
+        if len(line.split("_")) == n_gram_length:
+            name = line.strip("\n").replace("_"," ").replace('"','').lower()
+            # LIST
+            #names.append(name)
+            # DICT
+            names[name] = name
+
+    return names
 
 def get_entity_linking_wikipedia(text,n_gram_length):
     # load Wikipedia article name candidates
@@ -400,6 +423,13 @@ def sort_and_save_index(cls_ent_idx,ent_cls_idx):
 
     return sorted_cls_ent_idx,sorted_ent_cls_idx
 
+def load_index(outpath):
+    with open(outpath + "cls_ent_idx.json", 'r') as f:
+        sorted_cls_ent_idx = json.load(f)
+    with open(outpath + "ent_cls_idx.json", 'r') as f:
+        sorted_ent_cls_idx = json.load(f)
+    return sorted_cls_ent_idx,sorted_ent_cls_idx
+
 # Generate qids for top ten
 def generate_qids(sorted_cls_ent_idx):
     # Save to index and table
@@ -444,10 +474,7 @@ def predict_text_mscs(table,n_gram_lengths):
     prediction_table = pd.DataFrame(columns=['de','mscs_actual','mscs_predicted','confidences','overlap_ratio'])
 
     # Open index
-    with open(outpath + "cls_ent_idx.json", 'r') as f:
-        sorted_cls_ent_idx = json.load(f)
-    with open(outpath + "ent_cls_idx.json", 'r') as f:
-        sorted_ent_cls_idx = json.load(f)
+    sorted_cls_ent_idx,sorted_ent_cls_idx = load_index(outpath)
 
     # mscs actual vs. predicted
     mscs_actual = {}
@@ -574,12 +601,40 @@ def predict_mscs(ent_cls_dict):
             msc_val = msc[1]
             ent_cls_dict[ent_key][msc_key] /= total
 
+def print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx):
+
+    # average length
+    def get_mean_count(idx):
+        lengths = []
+        for item in idx.items():
+            lengths.append(len(item[1]))
+        avg_length = np.mean(lengths)
+        return avg_length
+    cls_ent_idx_avg_count = get_mean_count(sorted_cls_ent_idx)
+    print(cls_ent_idx_avg_count)
+    ent_cls_idx_avg_count = get_mean_count(sorted_ent_cls_idx)
+    print(ent_cls_idx_avg_count)
+
+    # entropy
+    def get_mean_entropy(idx):
+        entropies = []
+        for cls in idx.items():
+            frequencies = [ent[1] for ent in cls[1].items()]
+            entropies.append(scipy.stats.entropy(frequencies))
+        avg_entropy = np.mean(entropies)
+        return avg_entropy
+    cls_ent_idx_avg_entropy = get_mean_entropy(sorted_cls_ent_idx)
+    print(cls_ent_idx_avg_entropy)
+    ent_cls_idx_avg_entropy = get_mean_entropy(sorted_ent_cls_idx)
+    print(ent_cls_idx_avg_entropy)
+
+    return 0
+
 ###########
 # EXECUTE #
 ###########
 
 # Set paths
-# ADAPT INPUT PATH HERE
 inpath = r'C:\Users\phili\Downloads'
 filename_input = 'out.csv'#full.csv
 fullpath = os.path.join(inpath,filename_input)
@@ -596,8 +651,11 @@ nr_docs = int(tot_rows*train_split_rate)
 
 #1) Generate MSC-keyword mapping
 print('Generate MSC-keyword mapping\n')
-cls_ent_idx,ent_cls_idx = generate_msc_keyword_mapping(table,nr_docs)
-sorted_cls_ent_idx,sorted_ent_cls_idx = sort_and_save_index(cls_ent_idx,ent_cls_idx)
+#cls_ent_idx,ent_cls_idx = generate_msc_keyword_mapping(table,nr_docs)
+#sorted_cls_ent_idx,sorted_ent_cls_idx = sort_and_save_index(cls_ent_idx,ent_cls_idx)
+sorted_cls_ent_idx,sorted_ent_cls_idx = load_index(outpath)
+#1*) Dataset statistics
+print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx)
 
 #2) Predict MSCs
 print('Predict MSCs\n')
