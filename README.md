@@ -37,7 +37,7 @@ evaluation.py
 ```
 contains all required steps in the data processing pipeline.
 
-0) Load input table
+### 0) Load input table
 
 After specifiying the
 ```
@@ -57,14 +57,14 @@ nr_docs = int(tot_rows*train_split_rate)
 ```
 which can be adapted.
 
-1*) Dataset statistics
+### 1*) Dataset statistics
 
 The dataset statistics are generated using
 ```
 print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx)
 ```
 
-1) Generate MSC-keyword mapping
+### 1) Generate MSC-keyword mapping
 
 First the MSC-keyword/keyword-MSC class-entity/entity-class (cls_ent) index can be created from the input table via
 ```
@@ -79,14 +79,14 @@ After being generated once, in subsequent script executions, the above line may 
 sorted_cls_ent_idx,sorted_ent_cls_idx = load_index(outpath)
 ```
 
-2) Predict MSCs
+### 2) Predict MSCs
 
 To predict the MSCs from the table, use
 ```
 predict_text_mscs(table,n_gram_lengths)
 ```
 
-3) Evaluate MSC predictions
+### 3) Evaluate MSC predictions
 
 The core evaluation is done by
 ```
