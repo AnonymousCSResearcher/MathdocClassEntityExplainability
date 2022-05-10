@@ -29,6 +29,71 @@ Before executing the algorithms, it is necessary to install the python modules i
 
 ## Fine-Grained QID and MSC Prediction
 
+Data and algorithms can be found in the folder 'Fine-Grained-MSC-Class'.
+
+The script
+```
+evaluation.py
+```
+contains all required steps in the data processing pipeline.
+
+0) Load input table
+After specifiying the
+```
+fullpath
+```
+of the dataset csv file, the
+```
+table = pd.read_csv(fullpath,delimiter=',')
+```
+can be read in using the python pandas module.
+
+In our experiments, we set the parameter to
+```
+tot_rows = len(table)
+train_split_rate = 0.7
+nr_docs = int(tot_rows*train_split_rate)
+```
+which can be adapted.
+
+1*) Dataset statistics
+The dataset statistics are generated using
+```
+print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx)
+```
+
+1) Generate MSC-keyword mapping
+First the MSC-keyword/keyword-MSC class-entity/entity-class (cls_ent) index can be created from the input table via
+```
+cls_ent_idx,ent_cls_idx = generate_msc_keyword_mapping(table,nr_docs)
+```
+and dumped to disk using
+```
+sorted_cls_ent_idx,sorted_ent_cls_idx = sort_and_save_index(cls_ent_idx,ent_cls_idx)
+```
+After being generated once, in subsequent script executions, the above line may be commented out and the index loaded via
+```
+sorted_cls_ent_idx,sorted_ent_cls_idx = load_index(outpath)
+```
+
+2) Predict MSCs
+To predict the MSCs from the table, use
+```
+predict_text_mscs(table,n_gram_lengths)
+```
+
+3) Evaluate MSC predictions
+
+The core evaluation is done by
+```
+train_test_split(table,train_split_rate)
+```
+and
+```
+get_sparse_mscs(table)
+```
+
+<!--
 Data and algorithms can be found in the folder 'ConceptClassSpaces'.
 
 1) QID and MSC predictions can be made using
@@ -64,6 +129,7 @@ outputting
 ```
 keywords_vs_refs_mrmscs.csv
 ```
+-->
 
 ## MSC-arXiv Category Correspondence
 
