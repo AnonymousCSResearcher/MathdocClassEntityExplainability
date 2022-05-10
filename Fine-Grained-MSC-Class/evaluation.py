@@ -338,7 +338,7 @@ def get_mscs(table,idx):
 
 def get_keywords(table,idx):
     keywords = []
-    for keyword in clean(table['keyword'][idx]).split(","):
+    for keyword in clean(str(table['keyword'][idx])).split(","):
         keyword = keyword.lstrip().rstrip()
         for clea_str in [',',"'",'"',"`",'\\']:
             keyword = keyword.strip(clea_str)
