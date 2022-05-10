@@ -13,10 +13,6 @@ We examine relationships between fine-grained subject classes and keyword entiti
 <!--
 This manual provides descriptions to reproduce the results for each subsection of the evaluation section of the associated paper. In this project, we address the information need of document subject category classification interpretability and explainability. Therefore, we analyze the relationships between categories (labels) and entities (features) of a document. We examine relationships between textual and mathematical subject classes and entities, mining a collection of documents from the arXiv preprint repository (NTCIR and zbMATH dataset). The results indicate that mathematical entities have the potential to provide high explainability as they are a crucial part of a STEM (Science, Technology, Engineering, and Mathematics) document.
 
-## Requirements
-
-Before executing the algorithms, it is necessary to install the python modules into your local virtual environment (venv) using the provided requirements.txt
-
 ## Evaluation Workflow
 
 The figure below (paper Figure 1) illustrates the workflow of our experiments.
@@ -26,6 +22,10 @@ The figure below (paper Figure 1) illustrates the workflow of our experiments.
 Entity Linking for both textual and mathematical entities and entity-category correspondence is examined as a prerequisite for classification entity explainability.
 The python module dependencies (scikit-learn, LIME, SHAP, etc.) are specified in the header of the respective scripts. The numbering of the result figures and tables in the paper are referenced where they are relevant.
 -->
+
+## Requirements
+
+Before executing the algorithms, it is necessary to install the python modules into your local virtual environment (venv) using the provided requirements.txt
 
 ## Fine-Grained QID and MSC Prediction
 
