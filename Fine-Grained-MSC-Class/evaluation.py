@@ -611,9 +611,9 @@ def print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx):
         avg_length = np.mean(lengths)
         return avg_length
     cls_ent_idx_avg_count = get_mean_count(sorted_cls_ent_idx)
-    print(cls_ent_idx_avg_count)
+    print('Average entity per class count: ' + str(cls_ent_idx_avg_count))
     ent_cls_idx_avg_count = get_mean_count(sorted_ent_cls_idx)
-    print(ent_cls_idx_avg_count)
+    print('Average class per entity count: ' + str(ent_cls_idx_avg_count))
 
     # entropy
     def get_mean_entropy(idx):
@@ -624,9 +624,9 @@ def print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx):
         avg_entropy = np.mean(entropies)
         return avg_entropy
     cls_ent_idx_avg_entropy = get_mean_entropy(sorted_cls_ent_idx)
-    print(cls_ent_idx_avg_entropy)
+    print('Average entity per class entropy: ' + str(cls_ent_idx_avg_entropy))
     ent_cls_idx_avg_entropy = get_mean_entropy(sorted_ent_cls_idx)
-    print(ent_cls_idx_avg_entropy)
+    print('Average class per entity entropy: ' + str(ent_cls_idx_avg_entropy))
 
     return 0
 
@@ -641,7 +641,7 @@ fullpath = os.path.join(inpath,filename_input)
 outpath = ''
 
 # 0) Load input table
-print('Load input table\n')
+print('\nLoad input table...\n')
 table = pd.read_csv(fullpath,delimiter=',')
 
 # Set parameter
@@ -650,19 +650,20 @@ train_split_rate = 0.7
 nr_docs = int(tot_rows*train_split_rate)
 
 #1) Generate MSC-keyword mapping
-print('Generate MSC-keyword mapping\n')
-#cls_ent_idx,ent_cls_idx = generate_msc_keyword_mapping(table,nr_docs)
-#sorted_cls_ent_idx,sorted_ent_cls_idx = sort_and_save_index(cls_ent_idx,ent_cls_idx)
-sorted_cls_ent_idx,sorted_ent_cls_idx = load_index(outpath)
+print('\nGenerate MSC-keyword mapping...\n')
+cls_ent_idx,ent_cls_idx = generate_msc_keyword_mapping(table,nr_docs)
+sorted_cls_ent_idx,sorted_ent_cls_idx = sort_and_save_index(cls_ent_idx,ent_cls_idx)
+#sorted_cls_ent_idx,sorted_ent_cls_idx = load_index(outpath)
 #1*) Dataset statistics
+print('\nDataset statistics:\n')
 print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx)
 
 #2) Predict MSCs
-print('Predict MSCs\n')
+print('\nPredict MSCs...\n')
 predict_text_mscs(table,n_gram_lengths=[2,3])
 
 #3) Evaluate MSC predictions
-print('Evaluate MSC predictions\n')
+print('\nEvaluate MSC predictions...\n')
 train_test_split(table,train_split_rate)
 #get_sparse_mscs(table)
 
