@@ -85,6 +85,10 @@ To predict the MSCs from the table, use
 ```
 predict_text_mscs(table,n_gram_lengths)
 ```
+The prediction table is saved to the specified
+```
+outpath + 'mscs_prediction_table.csv'
+```
 
 ### 3) Evaluate MSC predictions
 
