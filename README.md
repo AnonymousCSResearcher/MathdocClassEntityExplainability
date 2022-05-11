@@ -11,42 +11,82 @@ The figure below (paper Figure 1) illustrates the workflow of our experiments.
 Entity Linking for both textual and mathematical entities and entity-category correspondence is examined as a prerequisite for classification entity explainability.
 The python module dependencies (scikit-learn, LIME, SHAP, etc.) are specified in the header of the respective scripts. The numbering of the result figures and tables in the paper are referenced where they are relevant.
 
+## Requirements
+
+Before executing the algorithms, it is necessary to install the python modules into your local virtual environment (venv) using the provided requirements.txt
+
 ## Fine-Grained QID and MSC Prediction
 
-Data and algorithms can be found in the folder 'ConceptClassSpaces'.
+Data and algorithms can be found in the folder 'Fine-Grained-MSC-Class'.
 
-1) QID and MSC predictions can be made using
+The script
 ```
-get_ConceptClassSpaces.py
+evaluation.py
 ```
-2) The manual QID benchmark dataset (500 manually linked entities) is available in
+contains all required steps in the data processing pipeline.
+
+### 0) Load input table
+
+After specifiying the
 ```
-evaluation/100docs/assessed/Math Entity Linking zbmath keywords evaluation_all.csv
+fullpath
 ```
-3) The pywikibot/SPARQL predictions are evaluated agains the benchmark using
+of the dataset csv file, the
 ```
-evaluate_MathEL_zbmath_keywords.py
+table = pd.read_csv(fullpath,delimiter=',')
 ```
-4) MSC prediction is done by
+can be read in using the python pandas module.
+
+In our experiments, we set the parameter to
 ```
-predict_mscs.py
+tot_rows = len(table)
+train_split_rate = 0.7
+nr_docs = int(tot_rows*train_split_rate)
 ```
-generating
+which can be adapted.
+
+### 1*) Dataset statistics
+
+The dataset statistics are generated using
 ```
-mrmscs_dict.json
+print_dataset_statistics(sorted_cls_ent_idx,sorted_ent_cls_idx)
 ```
-5)
-After making a
+
+### 1) Generate MSC-keyword mapping
+
+First the MSC-keyword/keyword-MSC class-entity/entity-class (cls_ent) index can be created from the input table via
 ```
-train-test_split.py
+cls_ent_idx,ent_cls_idx = generate_msc_keyword_mapping(table,nr_docs)
 ```
-the evaluation can be carried out using
+and dumped to disk using
 ```
-keywords_vs_refs.py
+sorted_cls_ent_idx,sorted_ent_cls_idx = sort_and_save_index(cls_ent_idx,ent_cls_idx)
 ```
-outputting
+After being generated once, in subsequent script executions, the above line may be commented out and the index loaded via
 ```
-keywords_vs_refs_mrmscs.csv
+sorted_cls_ent_idx,sorted_ent_cls_idx = load_index(outpath)
+```
+
+### 2) Predict MSCs
+
+To predict the MSCs from the table, use
+```
+predict_text_mscs(table,n_gram_lengths)
+```
+The prediction table is saved to the specified
+```
+outpath + 'mscs_prediction_table.csv'
+```
+
+### 3) Evaluate MSC predictions
+
+The core evaluation is done by
+```
+train_test_split(table,train_split_rate)
+```
+and
+```
+get_sparse_mscs(table)
 ```
 
 ## MSC-arXiv Category Correspondence
