@@ -15,7 +15,7 @@ The python module dependencies (scikit-learn, LIME, SHAP, etc.) are specified in
 
 Before executing the algorithms, it is necessary to install the python modules into your local virtual environment (venv) using the provided requirements.txt
 
-## Fine-Grained QID and MSC Prediction
+## Fine-Grained Class from Entity Prediction
 
 Data and algorithms can be found in the folder 'Fine-Grained-MSC-Class'.
 
